@@ -60,6 +60,35 @@
 		</possibleEvent>
 		<possibleEvent name="posible_event4">
 			<documentation>documentation of possible_event4</documentation>
-		</possibleEvent>
+		</possibleEvent>	
 	</restrictedState>
+	
+	<restrictedInformation name="restrictedInformation">
+		<color>blue</color>
+		<documentation>second test restriction</documentation>
+		<possibleInformation name="posible_event3">
+			<documentation>documentation of possible_event3</documentation>
+		</possibleInformation>
+		<possibleInformation name="posible_event4">
+			<documentation>documentation of possible_event4</documentation>
+		</possibleInformation>
+	</restrictedInformation>
+	
+	<restrictedAction name="restrictedInformation">
+		<color>blue</color>
+		<documentation>second test restriction</documentation>
+		<possibleAction name="posible_event3">
+			<documentation>documentation of possible_event3</documentation>
+		</possibleAction>
+		<possibleAction name="posible_event4">
+			<documentation>documentation of possible_event4</documentation>
+		</possibleAction>
+	</restrictedAction>
+	
+	
+	
+	
+	
+	
+	
 </SCXMLConstraints>

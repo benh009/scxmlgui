@@ -538,7 +538,8 @@ public class SCXMLGraphEditor extends JPanel
 			JAXBContext context = JAXBContext.newInstance(SCXMLConstraints.class);
 			if (fileInputStream != null) {
 				restrictedStatesConfig = (SCXMLConstraints) context.createUnmarshaller().unmarshal(fileInputStream);
-			}
+                                
+                        }
 		} catch (Exception e) {
 			System.out.println("Error while parsing restrictedStates.xml file: " + e.getMessage());
 		}
