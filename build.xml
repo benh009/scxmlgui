@@ -70,4 +70,21 @@
     nbproject/build-impl.xml file. 
 
     -->
+    	
+
+<target name="-post-jar">
+  <jar jarfile="dist/fsmEditor.jar">
+    <zipfileset src="${dist.jar}" excludes="META-INF/*" />
+    <zipfileset src="${file.reference.commons-cli-1.2.jar}" excludes="META-INF/*" />
+    <zipfileset src="${file.reference.dom4j.jar}" excludes="META-INF/*" />
+    <zipfileset src="${file.reference.lucene-core-3.6.1.jar}" excludes="META-INF/*" />
+        <zipfileset src="${file.reference.rsyntaxtextarea.jar}" excludes="META-INF/*" />
+    <zipfileset src="${file.reference.jgraphx.jar}" excludes="META-INF/*" />
+    <manifest>
+        <attribute name="Main-Class" value="com.mxgraph.examples.swing.SCXMLGraphEditor"/>
+    </manifest>
+  </jar>
+</target>
 </project>
+
+

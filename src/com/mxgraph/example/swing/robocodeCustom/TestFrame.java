@@ -25,16 +25,8 @@ public class TestFrame {
 
     public static void main(String[] args) {
 
-        AideFrame aide = new AideFrame();
         initxml();
-        for (SCXMLConstraints.RestrictedAction as : restrictedStatesConfig.getRestrictedAction()) {
-            for (SCXMLConstraints.RestrictedAction.PossibleAction a : as.getPossibleAction()) {
-                System.out.println(a.getName());
-                //aide.getDocumentationLabel().setText(a.getDocumentation());
-
-            }
-        }
-        aide.addElementCombo(restrictedStatesConfig.getRestrictedAction().get(0));
+        AideFrame aide = new AideFrame(restrictedStatesConfig);
 
         JFrame frame = new JFrame();
 
