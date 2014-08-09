@@ -631,7 +631,7 @@ public class SCXMLGraph extends mxGraph
 				return node.getID();
 		} else if (v instanceof SCXMLEdge) {
 			SCXMLEdge edge=((SCXMLEdge)v);
-			return edge.getEvent();
+			return edge.getComments();
 		} else {
 			return "";
 		}
@@ -819,7 +819,7 @@ public class SCXMLGraph extends mxGraph
 		{
 			mxCell edge = (mxCell) cloneCells(new Object[] { edgeTemplate })[0];
 			edge.setId(id);
-
+                        
 			return edge;
 		}
 

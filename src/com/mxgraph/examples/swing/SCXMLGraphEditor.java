@@ -476,6 +476,7 @@ public class SCXMLGraphEditor extends JPanel
 		// Stores a reference to the graph and creates the command history
 		graphComponent = component;
 		final SCXMLGraph graph = graphComponent.getGraph();
+                
 		undoManager = new mxUndoManager(100);
 
 		// Updates the modified flag if the graph model changes
