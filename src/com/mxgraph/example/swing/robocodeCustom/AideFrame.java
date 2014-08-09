@@ -4,6 +4,7 @@ import com.mxgraph.examples.config.DocAffichage;
 import com.mxgraph.examples.config.SCXMLConstraints;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
 
 /**
  *
@@ -18,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class AideFrame extends JPanel {
 
-    private JLabel documentationLabel = new JLabel();
+    private JTextPane documentationLabel = new JTextPane();
     private JLabel nameLabel = new JLabel();
     private JComboBox combo = new JComboBox();
     private JComboBox comboTypeDoc = new JComboBox();
@@ -26,22 +28,30 @@ public class AideFrame extends JPanel {
 
     public AideFrame(SCXMLConstraints restrictedStatesConfig) {
         super();
-        this.setLayout(new BorderLayout());
+
         this.restrictedStatesConfig = restrictedStatesConfig;
-        combo.setPreferredSize(new Dimension(200, 20));
-        comboTypeDoc.setPreferredSize(new Dimension(200, 20));
-        documentationLabel.setSize(400, 200);
+        combo.setPreferredSize(new Dimension(400, 20));
+        comboTypeDoc.setPreferredSize(new Dimension(400, 20));
+        documentationLabel.setPreferredSize(new Dimension(400, 360));
+        documentationLabel.setContentType("text/html");
 
-        this.add(documentationLabel, BorderLayout.CENTER);
-        this.add(combo, BorderLayout.NORTH);
-        this.add(comboTypeDoc, BorderLayout.SOUTH);
 
+        this.add(comboTypeDoc);
+        this.add(combo);
+        this.add(documentationLabel);
+        
+        
+
+        
+        
         comboTypeDoc.addItem("Evènement disponible");
         comboTypeDoc.addItem("Information disponible");
         comboTypeDoc.addItem("Action disponible");
+        
         comboTypeDoc.addItemListener(new ItemTypeDoc());
+        comboTypeDoc.setSelectedIndex(1);
         combo.addItemListener(new ItemState());
-
+        combo.setSelectedIndex(1);
 
     }
 
@@ -51,15 +61,16 @@ public class AideFrame extends JPanel {
             combo.addItem(((DocAffichage) a).getName());
         }
     }
-    
-private List list;
+
+    private List list;
+
     class ItemState implements ItemListener {
 
         @Override
         public void itemStateChanged(ItemEvent e) {
-            if(combo.getSelectedIndex()!=-1){
-            String s = ((DocAffichage)list.get(combo.getSelectedIndex())).getDocumentation();
-            documentationLabel.setText("<html>" + s + "</html>");
+            if (combo.getSelectedIndex() != -1) {
+                String s = ((DocAffichage) list.get(combo.getSelectedIndex())).getDocumentation();
+                documentationLabel.setText("<html>" + s + "</html>");
             }
         }
     }
@@ -73,10 +84,10 @@ private List list;
                 list = restrictedStatesConfig.getRestrictedState().get(0).getPossibleEvent();
                 addElementCombo();
             } else if (index == 1) {
-                list =restrictedStatesConfig.getRestrictedInformation().get(0).getPossibleInformation();
+                list = restrictedStatesConfig.getRestrictedInformation().get(0).getPossibleInformation();
                 addElementCombo();
             } else if (index == 2) {
-                list= restrictedStatesConfig.getRestrictedAction().get(0).getPossibleAction();
+                list = restrictedStatesConfig.getRestrictedAction().get(0).getPossibleAction();
                 addElementCombo();
             }
         }

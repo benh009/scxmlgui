@@ -283,7 +283,7 @@ public class SCXMLEdgeEditor extends SCXMLElementEditor {
     }
     
     private void setEventDocumentationLabel(String eventDocumentation){
-    	eventDocumentationLabel.setText(eventDocumentation.trim());
+    	eventDocumentationLabel.setText("<html>"+eventDocumentation.trim()+"</html>");
     }
     
 }

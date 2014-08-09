@@ -1,46 +1,132 @@
 <?xml version="1.0"?>
 <SCXMLConstraints>
-	<restrictedState name="Robocode restriction">
+	<restrictedState name="Evènement disponible">
 		<color>blue</color>
 		<documentation>Cette restriction permet de ne pouvoir appeller que des évènements de robocode</documentation>
 		<possibleEvent name="t">
-			<documentation>redo event</documentation>
+			<documentation>				<![CDATA[
+				<h1>Nom de l'évènement</h1>
+				t
+				<h1>Documentation </h1>
+				Cet évènement est déclanché à chaque fois que c'est 
+				notre tour de donnée les actions à effectuer par le 
+				robot
+				
+				
+				]]></documentation>
 		</possibleEvent>
 		<possibleEvent name="onHitWall">
-			<documentation>redo event</documentation>
+			<documentation>			<![CDATA[
+				<h1>Nom de l'évènement</h1>
+				onHitWall
+				<h1>Documentation </h1>
+				Cet évènement est déclanché à chaque fois que notre robot
+				percute un mur
+				<h1>Payload </h1>
+				_event.data permet de récupèrer le payload de cet évènement<br>
+				Méthode utiles :<br>
+				_event.data.getBearing() :
+				
+				
+				]]></documentation>
 		</possibleEvent>
 		<possibleEvent name="onScannedRobot">
-			<documentation>redo event</documentation>
+			<documentation>
+						<![CDATA[
+				<h1>Nom de l'évènement</h1>
+				onScannedRobot
+				<h1>Documentation </h1>
+				Cet évènement est déclanché à chaque fois que notre robot
+				découvre un robot à l'aide de son radar 
+				
+				
+				]]></documentation>
 		</possibleEvent>
 		<possibleEvent name="onHitRobot">
-			<documentation>redo event</documentation>
+			<documentation>
+				
+							<![CDATA[
+				<h1>Nom de l'évènement</h1>
+				onHitRobot
+				<h1>Documentation </h1>
+				Cet évènement est déclanché à chaque fois que notre
+				robot percute un autre robot 
+				
+				
+				
+				]]>
+			
+			</documentation>
 		</possibleEvent>
 		<possibleEvent name="onHitByBullet">
-			<documentation>redo event</documentation>
+			<documentation>
+						<![CDATA[
+				<h1>Nom de l'évènement</h1>
+				onHitByBullet
+				<h1>Documentation </h1>
+				Cet évènement est déclanché à chaque fois que notre
+				robot est touché par un missile d'un autre tank
+				
+				
+				]]>
+			
+			</documentation>
 		</possibleEvent>
 		<possibleEvent name="onWin">
-			<documentation>redo event</documentation>
+			<documentation>
+						<![CDATA[
+				<h1>Nom de l'évènement</h1>
+				OnWin
+				<h1>Documentation </h1>
+				Cet évènement est déclanché à chaque fois que que l'on
+				gagne un round
+				
+				
+				]]>
+			
+			</documentation>
 		</possibleEvent>
 	</restrictedState>	
-	<restrictedInformation name="restrictedInformation">
+	<restrictedInformation name="Information disponible">
 		<color>blue</color>
 		<documentation>second test restriction</documentation>
-		<possibleInformation name="posible_event3">
-			<documentation>documentation of possible_event3</documentation>
-		</possibleInformation>
-		<possibleInformation name="posible_event4">
-			<documentation>documentation of possible_event4</documentation>
-		</possibleInformation>
-	</restrictedInformation>
-	
-	<restrictedAction name="restrictedInformation">
-		<color>blue</color>
-		<documentation>Information disponible par un robot</documentation>
-		
-		<possibleAction name="Position X">
+		<possibleInformation name="Energie">
 			<documentation>
 				<![CDATA[
 				<h1>Nom de la méthode</h1>
+				RI.energy()
+				<h1>Paramètre </h1>
+				aucun 
+				<h1>Documentation </h1>
+				Cette méthode permet de récuperer la quantité d'énergie
+				qui reste à notre robot
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		
+		<possibleInformation name="Position Y">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RI.y()
+				<h1>Paramètre </h1>
+				aucun 
+				<h1>Documentation </h1>
+				Cette méthode permet de récuperer la position y du robot
+				dans l'arène
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		<possibleInformation name="Position X">
+			<documentation>
+				<![CDATA[
+				<h1  >Nom de la méthode</h1>
 				RI.x()
 				<h1>Paramètre </h1>
 				aucun 
@@ -51,7 +137,65 @@
 				
 				]]>
 			</documentation>
-		</possibleAction>
+		</possibleInformation>
+		
+		<possibleInformation name="Direction robot">
+			<documentation>
+				<![CDATA[
+				<h1  >Nom de la méthode</h1>
+				RI.heading()
+				<h1>Paramètre </h1>
+				aucun 
+				<h1>Documentation </h1>
+				Cette méthode permet de récuperer la direction de notre
+				robot 
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+				<possibleInformation name="Hauteur du robot">
+			<documentation>
+				<![CDATA[
+				<h1  >Nom de la méthode</h1>
+				RI.height
+				<h1>Paramètre </h1>
+				aucun 
+				<h1>Documentation </h1>
+				Cette méthode permet de récuperer la hauteur de notre
+				robot 
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+				<possibleInformation name="Largeur du robot">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				RI.with()
+				<h1>Paramètre </h1>
+				aucun 
+				<h1>Documentation </h1>
+				Cette méthode permet de récuperer la largeur de notre
+				robot 
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		
+		
+	</restrictedInformation>
+	
+	<restrictedAction name="Action disponible">
+		<color>blue</color>
+		<documentation>Information disponible par un robot</documentation>
+		
+
 		
 		<possibleAction name="Position Y">
 			<documentation>
@@ -68,22 +212,7 @@
 				]]>
 			</documentation>
 		</possibleAction>
-		
-		<possibleAction name="Energie">
-			<documentation>
-				<![CDATA[
-				<h1>Nom de la méthode</h1>
-				RI.energy()
-				<h1>Paramètre </h1>
-				aucun 
-				<h1>Documentation </h1>
-				Cette méthode permet de récuperer la quantité d'énergie
-				qui reste à notre robot
-				
-				
-				]]>
-			</documentation>
-		</possibleAction>		
+	
 
 	</restrictedAction>
 	

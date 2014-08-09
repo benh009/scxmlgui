@@ -1,5 +1,6 @@
 package com.mxgraph.examples.swing.editor.scxml;
 
+import com.mxgraph.example.swing.robocodeCustom.TestFrame;
 import java.awt.Dialog.ModalityType;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -93,6 +94,7 @@ public class SCXMLEditorMenuBar extends JMenuBar
 	@SuppressWarnings("serial")
 	public SCXMLEditorMenuBar(final SCXMLGraphEditor ed)
 	{
+            
 		this.editor=ed;
 		final mxGraphComponent graphComponent = editor.getGraphComponent();
 		final mxGraph graph = graphComponent.getGraph();
@@ -132,7 +134,7 @@ public class SCXMLEditorMenuBar extends JMenuBar
 		menu.add(editor.bind(mxResources.get("delete"), new SCXMLDelete(),"/com/mxgraph/examples/swing/images/delete.gif"));
 
 		menu.addSeparator();
-
+                
 		menu.add(editor.bind(mxResources.get("selectAll"), mxGraphActions.getSelectAllAction()));
 		menu.add(editor.bind(mxResources.get("selectNone"), mxGraphActions.getSelectNoneAction()));
 
@@ -155,6 +157,14 @@ public class SCXMLEditorMenuBar extends JMenuBar
 		menu.setMnemonic(KeyEvent.VK_H);
 
 		JMenuItem item = menu.add(new JMenuItem(mxResources.get("aboutGraphEditor")));
+                JMenuItem itemRocodeHelp = menu.add(new JMenuItem(mxResources.get("helpRobocode")));
+                itemRocodeHelp.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        TestFrame t = new TestFrame(editor);
+                    }
+                });
 		item.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) {

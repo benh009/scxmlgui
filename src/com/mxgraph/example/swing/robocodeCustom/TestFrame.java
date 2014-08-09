@@ -5,14 +5,22 @@
  */
 package com.mxgraph.example.swing.robocodeCustom;
 
-import com.mxgraph.examples.config.ObjectFactory;
 import com.mxgraph.examples.config.SCXMLConstraints;
+import com.mxgraph.examples.swing.SCXMLGraphEditor;
+import com.mxgraph.util.mxResources;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
+import javax.swing.TransferHandler;
 import javax.xml.bind.JAXBContext;
 
 /**
@@ -20,26 +28,38 @@ import javax.xml.bind.JAXBContext;
  * @author hofbauer
  */
 public class TestFrame {
+    
+    public TestFrame(SCXMLGraphEditor editor)
+    {
+        initxml();
+        AideFrame aide = new AideFrame(restrictedStatesConfig);
+
+        JDialog frame = new JDialog(SwingUtilities.windowForComponent(editor));
+        frame.pack();
+
+        frame.setVisible(true);
+        frame.setSize(400, 400);
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("Liste des méthodes",aide);
+        tabs.addTab("Aide globale",new JPanel());
+        frame.add(tabs);
+        //Définit un titre pour notre fenêtre
+        frame.setTitle("Documentation");
+        
+
+        //Nous demandons maintenant à notre objet de se positionner au centre
+        frame.setLocationRelativeTo(null);
+        //Termine le processus lorsqu'on clique sur la croix rouge
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+  
+    }
 
     private static SCXMLConstraints restrictedStatesConfig;
 
     public static void main(String[] args) {
 
-        initxml();
-        AideFrame aide = new AideFrame(restrictedStatesConfig);
-
-        JFrame frame = new JFrame();
-
-        frame.setVisible(true);
-        frame.setSize(400, 400);
-        frame.add(aide);
-        //Définit un titre pour notre fenêtre
-        frame.setTitle("Documentation");
-
-        //Nous demandons maintenant à notre objet de se positionner au centre
-        frame.setLocationRelativeTo(null);
-        //Termine le processus lorsqu'on clique sur la croix rouge
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //TestFrame t = new TestFrame();
 
     }
 
