@@ -1,6 +1,6 @@
 package com.mxgraph.examples.swing.editor.scxml;
 
-import com.mxgraph.example.swing.robocodeCustom.TestFrame;
+import com.mxgraph.example.swing.robocodeCustom.AideFrame;
 import java.awt.Dialog.ModalityType;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -162,7 +162,7 @@ public class SCXMLEditorMenuBar extends JMenuBar
 
                     @Override
                     public void actionPerformed(ActionEvent ae) {
-                        TestFrame t = new TestFrame(editor);
+                        AideFrame t = new AideFrame(editor);
                     }
                 });
 		item.addActionListener(new ActionListener()

@@ -1,95 +1,124 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.mxgraph.example.swing.robocodeCustom;
 
-import com.mxgraph.examples.config.DocAffichage;
 import com.mxgraph.examples.config.SCXMLConstraints;
-import java.awt.BorderLayout;
+import com.mxgraph.examples.swing.SCXMLGraphEditor;
+import com.mxgraph.util.mxResources;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.List;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
+import javax.swing.TransferHandler;
+import javax.xml.bind.JAXBContext;
 
 /**
  *
  * @author hofbauer
  */
-public class AideFrame extends JPanel {
+public class AideFrame {
+    
+    public AideFrame(SCXMLGraphEditor editor)
+    {
+        initxml();
+        AidePanel aide = new AidePanel(restrictedStatesConfig);
 
-    private JTextPane documentationLabel = new JTextPane();
-    private JLabel nameLabel = new JLabel();
-    private JComboBox combo = new JComboBox();
-    private JComboBox comboTypeDoc = new JComboBox();
-    private SCXMLConstraints restrictedStatesConfig;
-
-    public AideFrame(SCXMLConstraints restrictedStatesConfig) {
-        super();
-
-        this.restrictedStatesConfig = restrictedStatesConfig;
-        combo.setPreferredSize(new Dimension(400, 20));
-        comboTypeDoc.setPreferredSize(new Dimension(400, 20));
-        documentationLabel.setPreferredSize(new Dimension(400, 360));
-        documentationLabel.setContentType("text/html");
-
-
-        this.add(comboTypeDoc);
-        this.add(combo);
-        this.add(documentationLabel);
+        JDialog frame = new JDialog(SwingUtilities.windowForComponent(editor));
+        frame.pack();
+        frame.setResizable(false);
+        frame.setVisible(true);
+        frame.setSize(600, 600);
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("Liste des méthodes",aide);
+         JPanel aideGlobaleRobocode= new JPanel();
+         JTextPane jtext = new  JTextPane();
+         jtext.setEditable(false);
+        jtext.setPreferredSize(new Dimension(600, 660));
+        jtext.setContentType("text/html");
+         jtext.setText("<html>"+stringAideGloable+"</html>");
+        aideGlobaleRobocode.add(jtext);
+        tabs.addTab("Aide globale",aideGlobaleRobocode);
+        frame.add(tabs);
+        //Définit un titre pour notre fenêtre
+        frame.setTitle("Documentation");
         
-        
 
+        //Nous demandons maintenant à notre objet de se positionner au centre
+        frame.setLocationRelativeTo(null);
+        //Termine le processus lorsqu'on clique sur la croix rouge
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
-        comboTypeDoc.addItem("Evènement disponible");
-        comboTypeDoc.addItem("Information disponible");
-        comboTypeDoc.addItem("Action disponible");
-        
-        comboTypeDoc.addItemListener(new ItemTypeDoc());
-        comboTypeDoc.setSelectedIndex(1);
-        combo.addItemListener(new ItemState());
-        combo.setSelectedIndex(1);
+  
+    }
+
+    private static SCXMLConstraints restrictedStatesConfig;
+
+    public static void main(String[] args) {
+
+        //TestFrame t = new TestFrame();
 
     }
 
-    public void addElementCombo() {
-        combo.removeAllItems();
-        for (Object a : list) {
-            combo.addItem(((DocAffichage) a).getName());
+    public static void initxml() {
+        restrictedStatesConfig = null;
+        InputStream fileInputStream = null;
+        try {
+            File file = new File("restrictedStates.xml");
+            fileInputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e1) {
+            System.out.println("Restriction configuration file not found. The application starts in normal mode without restriction handling.");
         }
-    }
+        try {
+            JAXBContext context = JAXBContext.newInstance(SCXMLConstraints.class);
+            if (fileInputStream != null) {
+                restrictedStatesConfig = (SCXMLConstraints) context.createUnmarshaller().unmarshal(fileInputStream);
 
-    private List list;
-
-    class ItemState implements ItemListener {
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            if (combo.getSelectedIndex() != -1) {
-                String s = ((DocAffichage) list.get(combo.getSelectedIndex())).getDocumentation();
-                documentationLabel.setText("<html>" + s + "</html>");
+            }
+        } catch (Exception e) {
+            System.out.println("Error while parsing restrictedStates.xml file: " + e.getMessage());
+        } finally {
+            try {
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
+            } catch (IOException e) {
+                System.out.println("Error while closing restriction configuration file!" + e.getMessage());
             }
         }
     }
-
-    class ItemTypeDoc implements ItemListener {
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            int index = comboTypeDoc.getSelectedIndex();
-            if (index == 0) {
-                list = restrictedStatesConfig.getRestrictedState().get(0).getPossibleEvent();
-                addElementCombo();
-            } else if (index == 1) {
-                list = restrictedStatesConfig.getRestrictedInformation().get(0).getPossibleInformation();
-                addElementCombo();
-            } else if (index == 2) {
-                list = restrictedStatesConfig.getRestrictedAction().get(0).getPossibleAction();
-                addElementCombo();
-            }
-        }
-    }
+    
+    private String stringAideGloable=
+            ""
+            + " <h1>Robocode</h1>"
+            + "L'interface de base de SCXMLGUI a été adaptée pour pouvoir représenter"
+            + " facilement le comportement de robots du jeu Robocode. Une fois ces robots"
+            + " modélisés, leurs modèles pourront être simulés dans le jeu. Il n'est donc "
+            + "pas utile de coder le comportement en Java. "
+            + "<h1>Actions et informations</h1>"
+            + "Il est possible d'appeler des méthodes d'un robot "
+            +"à l'aide de ses objets qui servent de proxys. Les objets sont :<br>"
+            +"---->RI(informations du robot)<br>"
+            +"---->RA(actions du robot)<br>"
+            +"---->RGI(informations du canon du robot)<br>"
+            +"---->RGA(actions du canon du robot)<br>"
+            +"---->GI(informations sur la partie)<br><br>"
+            +"La balise permettant de lancer une action dans un OnEntry,OnExit ou dans "
+            + "la partie action d'une transition est la suivante : <br>"
+            +"&lt my:RA expression=\"RA.direction(0.0d)\"&gt&lt/my:RA&gt"
+            +"<br><br> l'objet _event.data permet de récuperer le payload d'une transition"
+            
+            ;
 }

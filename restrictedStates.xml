@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <SCXMLConstraints>
-	<restrictedState name="Evènement disponible">
+	<restrictedState name="Evènements disponibles">
 		<color>blue</color>
 		<documentation>Cette restriction permet de ne pouvoir appeller que des évènements de robocode</documentation>
 		<possibleEvent name="t">
@@ -9,8 +9,8 @@
 				t
 				<h1>Documentation </h1>
 				Cet évènement est déclanché à chaque fois que c'est 
-				notre tour de donnée les actions à effectuer par le 
-				robot
+				notre tour de donner les actions à effectuer par le 
+				robot. Cela correspond à un tour dans Robocode.
 				
 				
 				]]></documentation>
@@ -21,11 +21,11 @@
 				onHitWall
 				<h1>Documentation </h1>
 				Cet évènement est déclanché à chaque fois que notre robot
-				percute un mur
+				percute un mur.
 				<h1>Payload </h1>
-				_event.data permet de récupèrer le payload de cet évènement<br>
-				Méthode utiles :<br>
-				_event.data.getBearing() :
+				_event.data permet de récupérer le payload de cet évènement.<br><br>
+				Méthode utile :<br>
+				----Double _event.data.getBearing() 
 				
 				
 				]]></documentation>
@@ -37,7 +37,17 @@
 				onScannedRobot
 				<h1>Documentation </h1>
 				Cet évènement est déclanché à chaque fois que notre robot
-				découvre un robot à l'aide de son radar 
+				découvre un robot à l'aide de son radar.
+				<h1>Payload </h1>
+				_event.data permet de récupérer le payload de cet évènement.<br><br>
+				Méthodes utiles :<br>
+				----Double _event.data.getBearing() <br>
+				----Double _event.data.getDistance() <br>
+				----Double _event.data.getEnergy() <br>
+				----Double _event.data.getHeading() <br>
+				----String _event.data.getName() <br>
+				----Double _event.data.getVelocity() <br>
+				
 				
 				
 				]]></documentation>
@@ -50,7 +60,15 @@
 				onHitRobot
 				<h1>Documentation </h1>
 				Cet évènement est déclanché à chaque fois que notre
-				robot percute un autre robot 
+				robot percute un autre robot.
+								<h1>Payload </h1>
+				_event.data permet de récupérer le payload de cet évènement.<br><br>
+				Méthodes utiles :<br>
+				----Double _event.data.getBearing() <br>
+				----Double _event.data.getEnergy() <br>
+				----Double _event.data.getHeading() <br>
+				----String _event.data.getName() <br>
+
 				
 				
 				
@@ -65,41 +83,59 @@
 				onHitByBullet
 				<h1>Documentation </h1>
 				Cet évènement est déclanché à chaque fois que notre
-				robot est touché par un missile d'un autre tank
+				robot est touché par un missile d'un autre tank.
+								<h1>Payload </h1>
+				_event.data permet de récupérer le payload de cet évènement.<br><br>
+				Méthodes utiles :<br>
+				----Double _event.data.getBearing() <br>
+				----Double _event.data.getDistance() <br>
+				----Double _event.data.getEnergy() <br>
+				----Double _event.data.getHeading() <br>
+				----String _event.data.getName() <br>
+				----Double _event.data.getVelocity() <br>
+				----Double _event.data.getPower() <br>
 				
 				
 				]]>
 			
 			</documentation>
 		</possibleEvent>
-		<possibleEvent name="onWin">
+
+		
+		<possibleEvent name="onMessageReceived">
 			<documentation>
 						<![CDATA[
 				<h1>Nom de l'évènement</h1>
-				OnWin
+				onMessageReceived
 				<h1>Documentation </h1>
-				Cet évènement est déclanché à chaque fois que que l'on
-				gagne un round
+				Cet évènement est déclanché à chaque fois qu'un robot
+				reçoit un message d'un membre de son équipe.
 				
+				<h1>Payload </h1>
+				_event.data permet de récupérer le payload de cet évènement.<br><br>
+				Méthodes utiles du payload :<br>
+				----String _event.data.getSender()<br> 
+				----String _event.data.getMessage()
 				
 				]]>
 			
 			</documentation>
 		</possibleEvent>
+		
 	</restrictedState>	
-	<restrictedInformation name="Information disponible">
+	<restrictedInformation name="Informations disponibles">
 		<color>blue</color>
 		<documentation>second test restriction</documentation>
 		<possibleInformation name="Energie">
 			<documentation>
 				<![CDATA[
 				<h1>Nom de la méthode</h1>
-				RI.energy()
+				Double RI.energy().
 				<h1>Paramètre </h1>
-				aucun 
+				aucun. 
 				<h1>Documentation </h1>
-				Cette méthode permet de récuperer la quantité d'énergie
-				qui reste à notre robot
+				Cette méthode permet de récupérer la quantité d'énergie
+				qui reste à notre robot.
 				
 				
 				]]>
@@ -111,12 +147,12 @@
 			<documentation>
 				<![CDATA[
 				<h1>Nom de la méthode</h1>
-				RI.y()
+				Double RI.y().
 				<h1>Paramètre </h1>
-				aucun 
+				aucun.
 				<h1>Documentation </h1>
-				Cette méthode permet de récuperer la position y du robot
-				dans l'arène
+				Cette méthode permet de récupérer la position y du robot
+				dans l'arène.
 				
 				
 				]]>
@@ -127,91 +163,511 @@
 			<documentation>
 				<![CDATA[
 				<h1  >Nom de la méthode</h1>
-				RI.x()
+				Double RI.x().
 				<h1>Paramètre </h1>
-				aucun 
+				aucun.
 				<h1>Documentation </h1>
-				Cette méthode permet de récuperer la position X du robot
-				dans l'arène
+				Cette méthode permet de récupérer la position X du robot
+				dans l'arène.
 				
 				
 				]]>
 			</documentation>
 		</possibleInformation>
 		
-		<possibleInformation name="Direction robot">
+		<possibleInformation name="Direction du robot">
 			<documentation>
 				<![CDATA[
 				<h1  >Nom de la méthode</h1>
-				RI.heading()
+				Double RI.heading().
 				<h1>Paramètre </h1>
-				aucun 
+				aucun.
 				<h1>Documentation </h1>
-				Cette méthode permet de récuperer la direction de notre
-				robot 
+				Cette méthode permet de récupérer la direction de notre
+				robot.
 				
 				
 				]]>
 			</documentation>
 		</possibleInformation>
 		
-				<possibleInformation name="Hauteur du robot">
+		<possibleInformation name="Direction du robot(boolean)">
 			<documentation>
 				<![CDATA[
 				<h1  >Nom de la méthode</h1>
-				RI.height
+				Boolean RI.heading(Double).
 				<h1>Paramètre </h1>
-				aucun 
+				Double : Direction souhaitée du robot en degré.
 				<h1>Documentation </h1>
-				Cette méthode permet de récuperer la hauteur de notre
-				robot 
+				Cette méthode permet de savoir si le robot 
+				se trouve bien dans la direction précisée dans le paramètre. 
+				Une marge de 0.1 est acceptée.
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		<possibleInformation name="Hauteur du robot">
+			<documentation>
+				<![CDATA[
+				<h1  >Nom de la méthode</h1>
+				Double RI.height().
+				<h1>Paramètre </h1>
+				aucun.
+				<h1>Documentation </h1>
+				Cette méthode permet de récupérer la hauteur de notre
+				robot.
 				
 				
 				]]>
 			</documentation>
 		</possibleInformation>
 		
-				<possibleInformation name="Largeur du robot">
+		<possibleInformation name="Largeur du robot">
 			<documentation>
 				<![CDATA[
 				<h1 >Nom de la méthode</h1>
-				RI.with()
+				Double RI.with().
 				<h1>Paramètre </h1>
-				aucun 
+				aucun.
 				<h1>Documentation </h1>
-				Cette méthode permet de récuperer la largeur de notre
-				robot 
+				Cette méthode permet de récupérer la largeur de notre
+				robot. 
+				
+				
+				]]>
+			</documentation>
+			</possibleInformation>
+			
+		<possibleInformation name="Membre de mon équipe">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				Boolean RI.isTeammate(String)
+				<h1>Paramètre </h1>
+				String : Le nom du robot à tester.
+				<h1>Documentation </h1>
+				Cette méthode permet de savoir si un robot fait 
+				partie de notre équipe.
 				
 				
 				]]>
 			</documentation>
 		</possibleInformation>
 		
+		<possibleInformation name="Distance entre deux points">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				Double RI.distance(Double,Double,Double,Double,)
+				<h1>Paramètres </h1>
+				Double : x point 1 <br>
+				Double : x point 2 <br>
+				Double : y point 1 <br>
+				Double : y point 2 <br>
+				<h1>Documentation </h1>
+				Cette méthode permet de connaître la distance entre 
+				deux points.
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		<possibleInformation name="Positon robot">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				Position RI.positionRobotScanned(Double,Double ).
+				<h1>Paramètres </h1>
+				Double : distance avec le robot <br>
+				Double : bearing avec le robot <br>
+				<h1>Documentation </h1>
+				Cette méthode permet de connaître la position à l'aide 
+				de la distance séparant notre tank du tank cible et 
+				du bearing  entre notre tank et le tank cible.
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		<possibleInformation name="Membre de mon équipe">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				Boolean RI.isTeammate(String).
+				<h1>Paramètre </h1>
+				String : Le nom du robot à tester.
+				<h1>Documentation </h1>
+				Cette méthode permet de savoir si un robot fait 
+				partie de notre équipe.
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		<possibleInformation name="Direction canon">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				Double RGI.heading().
+				<h1>Paramètre </h1>
+				aucun.
+				<h1>Documentation </h1>
+				Cette méthode permet de savoir la position du canon de 
+				notre tank. 
+				
+				
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		<possibleInformation name="Direction canon(boolean)">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				Boolean RGI.heading(Double)
+				<h1>Paramètre </h1>
+				Double : position en degré.
+				<h1>Documentation </h1>
+				Cette méthode permet de savoir 
+				si la position du canon de 
+				notre tank correspond au paramètre de la méthode. 
+				Une marge de 0.1 est acceptée.
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		<possibleInformation name="Hauteur de l'arène">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				Double GI.battleFieldHeight()
+				<h1>Paramètre </h1>
+				aucun
+				<h1>Documentation </h1>
+				Cette méthode permet de savoir la hauteur de l'arène
+				]]>
+			</documentation>
+		</possibleInformation>
+		
+		<possibleInformation name="Largeur de l'arène">
+			<documentation>
+				<![CDATA[
+				<h1 >Nom de la méthode</h1>
+				Double GI.battleFieldWidth()
+				<h1>Paramètre </h1>
+				aucun
+				<h1>Documentation </h1>
+				Cette méthode permet de savoir la largeur de l'arène
+				]]>
+			</documentation>
+		</possibleInformation>
 		
 		
 	</restrictedInformation>
 	
-	<restrictedAction name="Action disponible">
+	<restrictedAction name="Actions disponibles">
 		<color>blue</color>
 		<documentation>Information disponible par un robot</documentation>
 		
 
 		
-		<possibleAction name="Position Y">
+		<possibleAction name="Avancer ">
 			<documentation>
 				<![CDATA[
 				<h1>Nom de la méthode</h1>
-				RI.y()
+				RA.ahead(double).
 				<h1>Paramètre </h1>
-				aucun 
+				Double : la distance dont le robot doit avancer. 
 				<h1>Documentation </h1>
-				Cette méthode permet de récuperer la position y du robot
-				dans l'arène
-				
+				Cette méthode permet de faire avancer le robot
+				de la distance passée en paramètre.
+				]]>
+			</documentation>
+		</possibleAction>
+				<possibleAction name="Reculer">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.Back(double).
+				<h1>Paramètre </h1>
+				Double : la distance dont le robot doit reculer.
+				<h1>Documentation </h1>
+				Cette méthode permet de faire reculer le robot
+				de la distance passée en paramètre.
+				]]>
+			</documentation>
+		</possibleAction>
+		
+		<possibleAction name="Tourner à gauche ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.turnLeft(double).
+				<h1>Paramètre </h1>
+				Double : nombre de degrés dont le robot doit 
+				tourner à gauche.
+				<h1>Documentation </h1>
+				Cette méthode permet de faire tourner le robot à gauche 
+				du nombre de degrés passés en paramètre.
+				]]>
+			</documentation>
+		</possibleAction>
+		
+		<possibleAction name="Tourner à droite ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.turnRight(double).
+				<h1>Paramètre </h1>
+				Double : nombre de degrés dont le robot doit 
+				tourner à droite
+				<h1>Documentation </h1>
+				Cette méthode permet de faire tourner le robot à droite
+				du nombre de degrés passés en paramètre.
+				]]>
+			</documentation>
+		</possibleAction>
+			<possibleAction name="Direction ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.Direction(double).
+				<h1>Paramètre </h1>
+				Double : la direction dans laquelle le robot doit se 
+				positionner.
+				<h1>Documentation </h1>
+				Cette méthode permet de faire tourner le robot dans la direction
+				passée en paramètre.
 				
 				]]>
 			</documentation>
 		</possibleAction>
+	
+			
+			<possibleAction name="Vitesse de rotation maximum ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.setMaxTurnRate(double).
+				<h1>Paramètre </h1>
+				Double : la vitesse maximum de rotation.
+				<h1>Documentation </h1>
+				Cette méthode permet de fixer la vitesse maximum de 
+				rotation du robot.
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+					<possibleAction name="Vitesse maximum ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.setMaxVelocity(double).
+				<h1>Paramètre </h1>
+				Double : la vitesse maximum du robot.
+				<h1>Documentation </h1>
+				Cette méthode permet de fixer la vitesse maximum du 
+				robot.
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+	 <possibleAction name="Message en broadcast ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.broadcastMessage(String).
+				<h1>Paramètre </h1>
+				String : le message.
+				<h1>Documentation </h1>
+				Cette méthode permet d'envoyer un message en broadcast
+				à tous les membres de son équipe. 
+				
+				]]>
+			</documentation>
+		</possibleAction>
+			 <possibleAction name="Message en unicast ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.broadcastMessage(String , String).
+				<h1>Paramètres </h1>
+				String : le nom du destinataire. <br>
+				String : le message.
+				<h1>Documentation </h1>
+				Cette méthode permet d'envoyer un message en unicast
+				à un membre de son équipe. 
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+		<possibleAction name="Print">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RA.Print( String).
+				<h1>Paramètre </h1>
+				String : le message.
+				<h1>Documentation </h1>
+				Cette méthode permet d'imprimer un message dans le 
+				terminal de mon robot.
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+		<possibleAction name="Tourner le canon à gauche">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RGA.turnGunLeft( Double).
+				<h1>Paramètre </h1>
+				Double : nombre de degrés à faire tourner le canon à gauche. 
+				<h1>Documentation </h1>
+				Cette méthode permet de tourner le canon à gauche
+				du nombre de degrés passés en paramètre. 
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+		
+		<possibleAction name="Tourner le canon à Droite">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RGA.turnGunRight( Double).
+				<h1>Paramètre </h1>
+				Double : nombre de degrés à faire tourner le canon à droite.
+				<h1>Documentation </h1>
+				Cette méthode permet de tourner le canon à droite
+				du nombre de degrés passés en paramètre. 
+				
+				]]>
+			</documentation>
+		</possibleAction>
+			<possibleAction name="Tirer ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RGA.fire( Double)
+				<h1>Paramètre </h1>
+				Double : La puissance de feux entre 0 et 3.
+				<h1>Documentation </h1>
+				Cette méthode permet de tirer avec un puissance définie 
+				en paramètre.  
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+				<possibleAction name="Tirer en fonction de la distance ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RGA.smartfire( Double)
+				<h1>Paramètre </h1>
+				Double : Distance du robot cible.
+				<h1>Documentation </h1>
+				Cette méthode permet de tirer de façon intelligente. 
+				Elle permet d'adapter le tire en fonction de la distance 
+				de la cible. 
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+		<possibleAction name="Position correcte du canon suivi d'un tir ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RGA.smartFireGunPosition(Double bearing)
+				<h1>Paramètre </h1>
+				Double : Direction de la cible en degré.
+				<h1>Documentation </h1>
+				Cette méthode permet de tirer de façon intelligente. 
+				Elle permet d'adapter la position du canon en fonction de la direction  
+				de la cible. 
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+		<possibleAction name="Tirer spécifique à Ram ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RGA.smartfire( Double).
+				<h1>Paramètre </h1>
+				Double : L'énergie de la cible. 
+				<h1>Documentation </h1>
+				Cette méthode permet de tirer de façon intelligente. 
+				Elle permet d'adapter  son tir pour tuer le robot à 
+				l'aide d'un percution et non d'un tir. En effet, le 
+				nombre de point est plus élevé si la cible est tuée 
+				par percution.
+				
+				]]>
+			</documentation>
+		</possibleAction>
+		
+				
+		<possibleAction name="Scan  ">
+			<documentation>
+				<![CDATA[ <h1>Nom de la méthode</h1> RGA.scan() 
+				<h1>Paramètre </h1>
+				aucun.
+				<h1>Documentation </h1>
+				Cette méthode permet de générer un nouveau évènement 
+				onscannedRobot si le robot se trouve devant le radar. 
+				
+				]]>
+			</documentation>
+		</possibleAction>
+			<possibleAction name="Direction Canon ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RGA.directionGun(Double).
+				<h1>Paramètre </h1>
+				Double : Direction souhaitée en degré pour le canon.
+				<h1>Documentation </h1>
+				Cette méthode permet de tourner le canon dans la direction
+				souhaitée.
+				
+				]]>
+			</documentation>
+		</possibleAction>
+	
+		
+		<possibleAction name="Direction Canon par palier ">
+			<documentation>
+				<![CDATA[
+				<h1>Nom de la méthode</h1>
+				RGA.directionGun(Double,Double).
+				<h1>Paramètres </h1>
+				Double : Direction souhaitée en degré pour le canon.
+				Double : Taille du palier en degré.
+				<h1>Documentation </h1>
+				Cette méthode permet de tourner le canon dans la direction
+				souhaitée par palier. A chaque tour de jeu le canon ne tourne
+				que de maximum la taille du palier.
+				
+				]]>
+			</documentation>
+		</possibleAction>
+	
+	
+	
+	
+	
 	
 
 	</restrictedAction>
